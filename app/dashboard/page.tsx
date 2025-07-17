@@ -1,6 +1,6 @@
 import { ChartAreaInteractive } from "@/components/clients-chart";
 import { ChartBarDefault } from "@/components/pedidos-chart";
-import { ChartPieDonutText } from "@/components/ingresos-chart";
+import { IngresosChart } from "@/components/ingresos-chart";
 
 export default function DashboardPage() {
   return (
@@ -8,7 +8,7 @@ export default function DashboardPage() {
       <ChartAreaInteractive />
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 ">
         <ChartBarDefault />
-        <ChartPieDonutText />
+        <IngresosChart />
       </div>
     </div>
   );

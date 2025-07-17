@@ -19,52 +19,64 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 
-export const description = "A donut chart with text";
+export const description = "Distribución de ingresos por categoría de catering";
 
 const chartData = [
-  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-  { browser: "firefox", visitors: 287, fill: "var(--color-firefox)" },
-  { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-  { browser: "other", visitors: 190, fill: "var(--color-other)" },
+  {
+    category: "eventos_corporativos",
+    ingresos: 4250,
+    fill: "var(--color-eventos_corporativos)",
+  },
+  { category: "bodas", ingresos: 3800, fill: "var(--color-bodas)" },
+  { category: "cumpleanos", ingresos: 2100, fill: "var(--color-cumpleanos)" },
+  {
+    category: "catering_domicilio",
+    ingresos: 1650,
+    fill: "var(--color-catering_domicilio)",
+  },
+  {
+    category: "otros_eventos",
+    ingresos: 1200,
+    fill: "var(--color-otros_eventos)",
+  },
 ];
 
 const chartConfig = {
-  visitors: {
-    label: "Visitors",
+  ingresos: {
+    label: "Ingresos (€)",
   },
-  chrome: {
-    label: "Chrome",
+  eventos_corporativos: {
+    label: "Eventos Corporativos",
     color: "var(--chart-1)",
   },
-  safari: {
-    label: "Safari",
+  bodas: {
+    label: "Bodas",
     color: "var(--chart-2)",
   },
-  firefox: {
-    label: "Firefox",
+  cumpleanos: {
+    label: "Cumpleaños",
     color: "var(--chart-3)",
   },
-  edge: {
-    label: "Edge",
+  catering_domicilio: {
+    label: "Catering a Domicilio",
     color: "var(--chart-4)",
   },
-  other: {
-    label: "Other",
+  otros_eventos: {
+    label: "Otros Eventos",
     color: "var(--chart-5)",
   },
 } satisfies ChartConfig;
 
-export function ChartPieDonutText() {
-  const totalVisitors = React.useMemo(() => {
-    return chartData.reduce((acc, curr) => acc + curr.visitors, 0);
+export function IngresosChart() {
+  const totalIngresos = React.useMemo(() => {
+    return chartData.reduce((acc, curr) => acc + curr.ingresos, 0);
   }, []);
 
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Pie Chart - Donut with Text</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <CardTitle>Ingresos por Categoría</CardTitle>
+        <CardDescription>Distribución mensual - Julio 2025</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
@@ -78,8 +90,8 @@ export function ChartPieDonutText() {
             />
             <Pie
               data={chartData}
-              dataKey="visitors"
-              nameKey="browser"
+              dataKey="ingresos"
+              nameKey="category"
               innerRadius={60}
               strokeWidth={5}
             >
@@ -98,14 +110,14 @@ export function ChartPieDonutText() {
                           y={viewBox.cy}
                           className="fill-foreground text-3xl font-bold"
                         >
-                          {totalVisitors.toLocaleString()}
+                          €{totalIngresos.toLocaleString()}
                         </tspan>
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) + 24}
                           className="fill-muted-foreground"
                         >
-                          Visitors
+                          Total Mensual
                         </tspan>
                       </text>
                     );
@@ -118,10 +130,10 @@ export function ChartPieDonutText() {
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
         <div className="flex items-center gap-2 leading-none font-medium">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+          Crecimiento del 8.3% este mes <TrendingUp className="h-4 w-4" />
         </div>
         <div className="text-muted-foreground leading-none">
-          Showing total visitors for the last 6 months
+          Ingresos totales por categoría de catering
         </div>
       </CardFooter>
     </Card>
