@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Catering Management Platform
 
-## Getting Started
+Este proyecto es una plataforma web para la gestión integral de servicios de catering, desarrollada con Next.js, TypeScript y Clerk para autenticación. Incluye módulos para administración de entregas, clientes, inventario, pedidos y un bot inteligente para consultas sobre catering.
 
-First, run the development server:
+## Características principales
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Gestión de entregas**: Visualiza y administra entregas de catering.
+- **Clientes**: Registro, historial y análisis de clientes.
+- **Inventario**: Control de insumos y productos.
+- **Pedidos**: Creación y seguimiento de pedidos.
+- **Bot AI**: Asistente inteligente especializado en catering, usando Gemini de Google vía Vercel AI SDK.
+- **Autenticación**: Clerk para registro y acceso seguro.
+- **Interfaz moderna**: UI responsiva y componentes reutilizables.
+
+## Estructura del proyecto
+
+```
+app/
+  dashboard/
+    entregas/         # Vista y bot de entregas
+    clientes/         # Gestión de clientes
+    inventario/       # Inventario de insumos
+    pedidos/          # Pedidos y seguimiento
+components/           # Componentes UI y funcionales
+hooks/                # Custom hooks
+lib/                  # Utilidades
+public/               # Recursos estáticos
+api/chat/route.ts     # Endpoint para el bot AI
+middleware.ts         # Middleware Clerk y rutas públicas
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Instalación
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clona el repositorio:
+   ```bash
+   git clone <repo-url>
+   cd hackathon-front
+   ```
+2. Instala dependencias:
+   ```bash
+   pnpm install
+   # o npm/yarn/bun
+   ```
+3. Configura variables de entorno:
+   - Crea un archivo `.env.local` y agrega tu API Key de Gemini:
+     ```env
+     GOOGLE_API_KEY=tu_api_key_aqui
+     CLERK_PUBLISHABLE_KEY=tu_clerk_key
+     CLERK_SECRET_KEY=tu_clerk_secret
+     ```
+4. Inicia el servidor:
+   ```bash
+   pnpm dev
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Uso
 
-## Learn More
+- Accede a `/dashboard/entregas` para interactuar con el bot AI sobre catering.
+- Administra clientes, inventario y pedidos desde el dashboard.
+- El bot responde preguntas sobre logística, menús, organización y atención al cliente en catering.
 
-To learn more about Next.js, take a look at the following resources:
+## Autenticación
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Clerk protege todas las rutas excepto `/api/chat` y las de login/signup.
+- Configura Clerk en el dashboard para gestión de usuarios.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Dependencias clave
 
-## Deploy on Vercel
+- **Next.js**
+- **TypeScript**
+- **Clerk** (autenticación)
+- **@ai-sdk/react**, **@ai-sdk/google**, **ai** (bot Gemini)
+- **TailwindCSS** (estilos)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Despliegue
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Recomendado en [Vercel](https://vercel.com/) para integración nativa con Next.js y AI SDK.
+
+## Contribución
+
+¡Las contribuciones son bienvenidas! Abre un issue o PR para sugerencias y mejoras.
+
+## Licencia
+
+MIT
