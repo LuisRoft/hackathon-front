@@ -74,7 +74,7 @@ export default function DashboardLayout({
             </Breadcrumb>
           </div>
 
-          <div className="px-6">
+          <div className="px-6 ">
             <SignedOut>
               <SignInButton />
               <SignUpButton>
