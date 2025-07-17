@@ -1,7 +1,25 @@
-export default function EntregasPage() {
+"use client";
+
+import { useChat } from "@ai-sdk/react";
+
+export default function Page() {
+  const { messages, input, handleInputChange, handleSubmit } = useChat({});
+
   return (
-    <div>
-      <h1>Gestión de Entregas</h1>
-    </div>
+    <>
+      {messages.map(
+        (message: { id: string; role: string; content: string }) => (
+          <div key={message.id}>
+            {message.role === "user" ? "User: " : "AI: "}
+            {message.content}
+          </div>
+        )
+      )}
+
+      <form onSubmit={handleSubmit}>
+        <input name="prompt" value={input} onChange={handleInputChange} />
+        <button type="submit">Submit</button>
+      </form>
+    </>
   );
 }
