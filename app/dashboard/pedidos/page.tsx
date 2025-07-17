@@ -26,6 +26,13 @@ import {
 import { OrderCard } from "@/components/orders/order-card";
 import { CreateOrderForm } from "@/components/orders/create-order-form";
 import { OrderDetailsModal } from "@/components/orders/order-details-modal";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface MenuItem {
   id: string;
@@ -370,30 +377,32 @@ export default function PedidosPage() {
           />
         </div>
 
-        <select
-          value={filterStatus}
-          onChange={(e) => setFilterStatus(e.target.value)}
-          className="px-3 py-2 border rounded-md bg-background"
-        >
-          <option value="all">Todos los estados</option>
-          <option value="pending">Pendiente</option>
-          <option value="confirmed">Confirmado</option>
-          <option value="preparing">Preparando</option>
-          <option value="ready">Listo</option>
-          <option value="delivered">Entregado</option>
-          <option value="cancelled">Cancelado</option>
-        </select>
+        <Select value={filterStatus} onValueChange={setFilterStatus}>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Todos los estados" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">Todos los estados</SelectItem>
+            <SelectItem value="pending">Pendiente</SelectItem>
+            <SelectItem value="confirmed">Confirmado</SelectItem>
+            <SelectItem value="preparing">Preparando</SelectItem>
+            <SelectItem value="ready">Listo</SelectItem>
+            <SelectItem value="delivered">Entregado</SelectItem>
+            <SelectItem value="cancelled">Cancelado</SelectItem>
+          </SelectContent>
+        </Select>
 
-        <select
-          value={filterPayment}
-          onChange={(e) => setFilterPayment(e.target.value)}
-          className="px-3 py-2 border rounded-md bg-background"
-        >
-          <option value="all">Todos los pagos</option>
-          <option value="pending">Pago Pendiente</option>
-          <option value="paid">Pagado</option>
-          <option value="refunded">Reembolsado</option>
-        </select>
+        <Select value={filterPayment} onValueChange={setFilterPayment}>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Todos los pagos" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">Todos los pagos</SelectItem>
+            <SelectItem value="pending">Pago Pendiente</SelectItem>
+            <SelectItem value="paid">Pagado</SelectItem>
+            <SelectItem value="refunded">Reembolsado</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
 
       {/* Orders Grid */}
